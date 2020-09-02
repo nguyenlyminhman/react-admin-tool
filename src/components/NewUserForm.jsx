@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
 
 class NewUserForm extends Component {
-    render() {
-        return (
-            <div className="col-3">
-                <div className="btn btn-group col-12 text-right">
-                    <div className="btn  btn-primary">Add New</div>
-                </div>
+    constructor(props) {
+        super(props);
+        this.state = {
+            isShowForm: false,
+        }
+    }
 
+    toggleShowForm = () => {
+        this.setState({
+            isShowForm : !this.state.isShowForm
+        })
+    }
+
+    RenderButton = () => {
+        if (this.state.isShowForm) {
+            return (
+                <div className="btn btn-group col-12 text-right" >
+                    <div name='1' className="btn  btn-info" onClick={() => this.toggleShowForm()}>Close</div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="btn btn-group col-12 text-right">
+                    <div name='2' className="btn  btn-primary" onClick={() => this.toggleShowForm()}>Add New</div>
+                </div>
+            )
+        }
+    }
+
+    NewUserForm = () => {
+        if (this.state.isShowForm) {
+            return (
                 <div className="text-left">
                     <div className="card border-primary mb-3" style={{ maxWidth: '18rem' }}>
                         <div className="card-header">Add New User</div>
@@ -31,9 +56,15 @@ class NewUserForm extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="btn btn-group col-12 text-right">
-                    <div className="btn  btn-info">Close</div>
-                </div>
+            )
+        }
+    }
+
+    render() {
+        return (
+            <div className="col-3">
+                {this.RenderButton()}
+                {this.NewUserForm()}
             </div>
         );
     }
