@@ -3,6 +3,7 @@ import Header from './Header';
 import Search from './Search';
 import DataTable from './DataTable';
 import NewUserForm from './NewUserForm';
+import DataUser from '../common/data.json'
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -12,6 +13,7 @@ class App extends Component {
     super(props);
     this.state = {
       isShowNewUserForm: false,
+      data: DataUser
     }
   }
 
@@ -26,7 +28,7 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <Search isShow={this.state.isShowNewUserForm} toggleUserForm={()=>this.toggleUserForm()} />
-            <DataTable />
+            <DataTable userData={this.state.data}/>
             <NewUserForm isShow={this.state.isShowNewUserForm} />
           </div>
         </div>

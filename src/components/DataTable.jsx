@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import DataTableRow from './DataTableRow.jsx';
+
 
 class DataTable extends Component {
+    mappingDataUser = () => this.props.userData.map((value, key)=>(
+        <DataTableRow index={key+1} name={value.name} tel={value.tel} role={value.role}/>
+    ))
+
     render() {
+        console.log(this.props.userData);
         return (
             <div className="col-9">
                 <table className="table table-striped table-hover">
@@ -15,54 +22,7 @@ class DataTable extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td >1</td>
-                            <td>Nguyen Van AABB</td>
-                            <td>0989 123 456</td>
-                            <td>Admin</td>
-                            <td>
-                                <div className="btn btn-group">
-                                    <div className="btn btn-warning">Edit</div>
-                                    <div className="btn btn-danger">Delete</div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td >2</td>
-                            <td>Nguyen Van AABB</td>
-                            <td>0989 123 456</td>
-                            <td>Admin</td>
-                            <td>
-                                <div className="btn btn-group">
-                                    <div className="btn btn-warning">Edit</div>
-                                    <div className="btn btn-danger">Delete</div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td >3</td>
-                            <td>Nguyen Van AABB</td>
-                            <td>0989 123 456</td>
-                            <td>Admin</td>
-                            <td>
-                                <div className="btn btn-group">
-                                    <div className="btn btn-warning">Edit</div>
-                                    <div className="btn btn-danger">Delete</div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td >4</td>
-                            <td>Nguyen Van AABB</td>
-                            <td>0989 123 456</td>
-                            <td>Admin</td>
-                            <td>
-                                <div className="btn btn-group">
-                                    <div className="btn btn-warning">Edit</div>
-                                    <div className="btn btn-danger">Delete</div>
-                                </div>
-                            </td>
-                        </tr>
+                        {this.mappingDataUser()}
                     </tbody>
                 </table>
             </div>

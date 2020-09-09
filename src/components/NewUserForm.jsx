@@ -45,9 +45,9 @@ class NewUserForm extends Component {
                                 </div>
                                 <div className="form-group">
                                     <select className="form-control">
-                                        <option value="df">Default</option>
-                                        <option value="ad">Administrator</option>
-                                        <option value="eu">End-user</option>
+                                        <option value="1">Default</option>
+                                        <option value="2">Administrator</option>
+                                        <option value="3">End-user</option>
                                     </select>
                                 </div>
                                 <div className="form-group text-right">
