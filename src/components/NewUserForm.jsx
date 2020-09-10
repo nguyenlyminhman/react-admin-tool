@@ -30,9 +30,10 @@ class NewUserForm extends Component {
             }
         }
     */
-        newUserForm = () => {
-            if (this.props.isShow) {
-                return (
+    newUserForm = () => {
+        if (this.props.isShow) {
+            return (
+                <div className="col">
                     <div className="text-left">
                         <div className="card border-primary mb-3" style={{ maxWidth: '18rem' }}>
                             <div className="card-header">Add New User</div>
@@ -56,15 +57,16 @@ class NewUserForm extends Component {
                             </div>
                         </div>
                     </div>
-                )
-            }
+                </div>
+            )
         }
-    
+    }
+
     render() {
         return (
-            <div className="col-3">
+            <div>
                 {/* {this.RenderButton()}*/}
-                {this.newUserForm()} 
+                {this.newUserForm()}
             </div>
         );
     }

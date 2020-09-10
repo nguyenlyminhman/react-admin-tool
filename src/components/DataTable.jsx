@@ -8,9 +8,8 @@ class DataTable extends Component {
     ))
 
     render() {
-        console.log(this.props.userData);
         return (
-            <div className="col-9">
+            <div className="col">
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
