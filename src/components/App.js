@@ -22,15 +22,21 @@ class App extends Component {
 
   // get search string from Search component
   getSearchValue = (value) => {
-    console.log(value);
     this.setState({ strSearch: value.strSearch });
   }
 
+  getUserData = (value) => {
+    let items = this.state.data; // assign old data to items
+    items.push(value) // add new user data to old items
+    this.setState({ // update state (new user data array)
+      data: items
+    })  
+}
+
   render() {
-    console.log('!', this.state);
     let resultSearch = []
-    this.state.data.forEach((item, key)=>{
-      if(item.name.indexOf(this.state.strSearch) !== -1){
+    this.state.data.forEach((item, key) => {
+      if (item.name.indexOf(this.state.strSearch) !== -1) {
         resultSearch.push(item)
       }
     })
@@ -45,7 +51,10 @@ class App extends Component {
               getSearchValue={(value) => this.getSearchValue(value)}
             />
             <DataTable userData={resultSearch} />
-            <NewUserForm isShow={this.state.isShowNewUserForm} />
+            <NewUserForm
+              isShow={this.state.isShowNewUserForm}
+              getUserData={(value) => { this.getUserData(value) }}
+            />
           </div>
         </div>
       </div>

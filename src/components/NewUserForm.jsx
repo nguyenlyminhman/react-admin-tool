@@ -1,62 +1,63 @@
 import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 class NewUserForm extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     isShowForm: false,
-        // }
+        this.state = {
+            name: '',
+            tel: '',
+            role: '1',
+        }
     }
-    /*
-        toggleShowForm = () => {
-            this.setState({
-                isShowForm : !this.state.isShowForm
-            })
-        }
-    
-        RenderButton = () => {
-            if (this.state.isShowForm) {
-                return (
-                    <div className="btn btn-group col-12 text-right" >
-                        <div name='1' className="btn  btn-info" onClick={() => this.toggleShowForm()}>Close</div>
-                    </div>
-                )
-            } else {
-                return (
-                    <div className="btn btn-group col-12 text-right">
-                        <div name='2' className="btn  btn-primary" onClick={() => this.toggleShowForm()}>Add New</div>
-                    </div>
-                )
-            }
-        }
-    */
+
+    isChange = (event) => {
+        let name = event.target.name
+        let value = event.target.value
+        this.setState({
+            [name]: value
+        })
+
+    }
+
+    sendUserData = () => {
+        let item = { id:'', name: '', tel: '', role: '' }
+        item.id = uuidv4()+'';
+        item.name = this.state.name;
+        item.tel = this.state.tel;
+        item.role = this.state.role;
+        this.props.getUserData(item)
+    }
+
     newUserForm = () => {
         if (this.props.isShow) {
             return (
-                <div className="col">
+                <div className="col"><form>
                     <div className="text-left">
-                        <div className="card border-primary mb-3" style={{ maxWidth: '18rem' }}>
-                            <div className="card-header">Add New User</div>
-                            <div className="card-body text-primary">
-                                <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Username" />
-                                </div>
-                                <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Email" />
-                                </div>
-                                <div className="form-group">
-                                    <select className="form-control">
-                                        <option value="1">Default</option>
-                                        <option value="2">Administrator</option>
-                                        <option value="3">End-user</option>
-                                    </select>
-                                </div>
-                                <div className="form-group text-right">
-                                    <div className="btn btn-block btn-primary">Add</div>
+                        
+                            <div className="card border-primary mb-3" style={{ maxWidth: '18rem' }}>
+                                <div className="card-header">Add New User</div>
+                                <div className="card-body text-primary">
+                                    <div className="form-group">
+                                        <input type="text" name='name' onChange={(event) => this.isChange(event)} className="form-control" placeholder="Username" />
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="text" name='tel' onChange={(event) => this.isChange(event)} className="form-control" placeholder="Tel" />
+                                    </div>
+                                    <div className="form-group">
+                                        <select className="form-control" value={this.state.role} name='role' onChange={(event) => this.isChange(event)}>
+                                            <option value="1">Default</option>
+                                            <option value="2">Administrator</option>
+                                            <option value="3">End-user</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-group text-right">
+                                        <input type='reset' className="btn btn-block btn-primary" onClick={() => this.sendUserData()} value='Add'/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        
+                    </div></form>
                 </div>
             )
         }
@@ -65,7 +66,6 @@ class NewUserForm extends Component {
     render() {
         return (
             <div>
-                {/* {this.RenderButton()}*/}
                 {this.newUserForm()}
             </div>
         );
