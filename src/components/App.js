@@ -11,7 +11,8 @@ class App extends Component {
     super(props);
     this.state = {
       isShowNewUserForm: false,
-      data: DataUser
+      data: DataUser,
+      strSearch: '',
     }
   }
 
@@ -21,21 +22,29 @@ class App extends Component {
 
   // get search string from Search component
   getSearchValue = (value) => {
-    console.log('Data from search: ', value.strSearch);
+    console.log(value);
+    this.setState({ strSearch: value.strSearch });
   }
 
   render() {
+    console.log('!', this.state);
+    let resultSearch = []
+    this.state.data.forEach((item, key)=>{
+      if(item.name.indexOf(this.state.strSearch) !== -1){
+        resultSearch.push(item)
+      }
+    })
     return <div>
       <Header />
       <div className="searchForm">
         <div className="container">
           <div className="row">
-            <Search 
-              isShow={this.state.isShowNewUserForm} 
-              toggleUserForm={() => this.toggleUserForm()} 
-              getSearchValue = {(value)=> this.getSearchValue(value)} 
+            <Search
+              isShow={this.state.isShowNewUserForm}
+              toggleUserForm={() => this.toggleUserForm()}
+              getSearchValue={(value) => this.getSearchValue(value)}
             />
-            <DataTable userData={this.state.data} />
+            <DataTable userData={resultSearch} />
             <NewUserForm isShow={this.state.isShowNewUserForm} />
           </div>
         </div>
