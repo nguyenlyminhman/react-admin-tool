@@ -4,7 +4,7 @@ import DataTableRow from './DataTableRow.jsx';
 
 class DataTable extends Component {
     mappingDataUser = () => this.props.userData.map((value, key)=>(
-        <DataTableRow index={key+1} name={value.name} tel={value.tel} role={value.role}/>
+        <DataTableRow key={key} index={key+1} name={value.name} tel={value.tel} role={value.role}/>
     ))
 
     render() {
