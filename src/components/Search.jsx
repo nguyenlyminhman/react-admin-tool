@@ -11,7 +11,7 @@ class Search extends Component {
 
     //get value from search form
     renderButton = () => {
-        if (this.props.isShow) {
+        if (this.props.isShowNewUserForm) {
             return (
                 <div className="btn btn-group col-12 text-right" >
                     <div name='1' className="btn  btn-info" onClick={() => this.props.toggleUserForm()}>Close</div>
@@ -29,30 +29,31 @@ class Search extends Component {
     //get value from text field
     isChange = (event) => {
         this.setState({
-            searchValue : event.target.value
+            searchValue: event.target.value
         })
     }
 
     //sent search string to App.js (Father)
     sendSearchValue = () => {
         //call from
-        this.props.getSearchValue({strSearch: this.state.searchValue})
+        this.props.getSearchValue({ strSearch: this.state.searchValue })
     }
-    
+
     render() {
+        console.log(this.props);
         return (
             <div className="col-12">
                 <div className="form-group">
                     <div className="btn btn-group col-9">
-                        <input 
-                            type="text" 
-                            name="searchValue" 
-                            onChange={(event)=>this.isChange(event)}
-                            className="form-control" 
-                            aria-describedby="helpId" 
-                            placeholder="Search..." 
+                        <input
+                            type="text"
+                            name="searchValue"
+                            onChange={(event) => this.isChange(event)}
+                            className="form-control"
+                            aria-describedby="helpId"
+                            placeholder="Search..."
                         />
-                        <div className="btn btn-primary" onClick={()=>this.sendSearchValue()}>Search</div>
+                        <div className="btn btn-primary" onClick={() => this.sendSearchValue()}>Search</div>
                     </div>
                     <div className="btn btn-group col-3">
                         {this.renderButton()}

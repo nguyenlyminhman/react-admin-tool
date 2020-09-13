@@ -9,14 +9,14 @@ class DataTable extends Component {
     }
 
 
-    mappingDataUser = () => this.props.userData.map((value, key)=>(
-        <DataTableRow 
-            showEditForm={()=>this.props.showEditForm()}
-            editUserFunc={()=>this.editUserFunc(value)}  
-            key={value.id} 
-            index={key+1} 
-            name={value.name} 
-            tel={value.tel} 
+    mappingDataUser = () => this.props.userData.map((value, key) => (
+        <DataTableRow
+            showEditForm={() => this.props.showEditForm()}
+            editUserFunc={() => this.editUserFunc(value)}
+            key={value.id}
+            index={key + 1}
+            name={value.name}
+            tel={value.tel}
             role={value.role}
         />
     ))

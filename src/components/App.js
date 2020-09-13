@@ -15,6 +15,7 @@ class App extends Component {
       isShowEditUserForm: false,
       data: DataUser,
       strSearch: '',
+      userInfo: {}
     }
   }
 
@@ -33,14 +34,20 @@ class App extends Component {
     this.setState({ // update state (new user data array)
       data: items
     })
-}
+  }
 
   getUserEdit = (user) => {
-    
+    this.setState({
+      userInfo: user
+    })
   }
 
   toggleEditForm = () => {
     this.setState({ isShowEditUserForm: true })
+  }
+
+  cancelEditForm = () => {
+    this.setState({ isShowEditUserForm: false })
   }
 
   render() {
@@ -56,16 +63,20 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <Search
-              // toggleEditForm={()=>this.toggleEditForm()}
+              isShowNewUserForm={this.state.isShowNewUserForm}
               toggleUserForm={() => this.toggleUserForm()}
               getSearchValue={(value) => this.getSearchValue(value)}
             />
-            <DataTable showEditForm={()=>this.toggleEditForm()} getUserEdit={(user)=>this.getUserEdit(user)} userData={resultSearch} />
+            <DataTable showEditForm={() => this.toggleEditForm()} getUserEdit={(user) => this.getUserEdit(user)} userData={resultSearch} />
             <NewUserForm
-              isShow={this.state.isShowNewUserForm}
+              isShowNewUserForm={this.state.isShowNewUserForm}
               getUserData={(value) => { this.getUserData(value) }}
             />
-            <EditUser isShow={this.state.isShowEditUserForm}/>
+            <EditUser
+              cancelEditForm={() => this.cancelEditForm()}
+              userInfo={this.state.userInfo}
+              isShowEditUserForm={this.state.isShowEditUserForm}
+            />
           </div>
         </div>
       </div>
