@@ -3,8 +3,22 @@ import DataTableRow from './DataTableRow.jsx';
 
 
 class DataTable extends Component {
+
+    editUserFunc = (user) => {
+        this.props.getUserEdit(user)
+    }
+
+
     mappingDataUser = () => this.props.userData.map((value, key)=>(
-        <DataTableRow key={value.id} index={key+1} name={value.name} tel={value.tel} role={value.role}/>
+        <DataTableRow 
+            showEditForm={()=>this.props.showEditForm()}
+            editUserFunc={()=>this.editUserFunc(value)}  
+            key={value.id} 
+            index={key+1} 
+            name={value.name} 
+            tel={value.tel} 
+            role={value.role}
+        />
     ))
 
     render() {

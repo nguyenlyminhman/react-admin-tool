@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 class DataTableRow extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     showRole = (val) => {
         if (val === "2") {
             return "Admin"
@@ -10,6 +15,12 @@ class DataTableRow extends Component {
         }
         return "Default"
     }
+
+    editUser = () => {
+        this.props.editUserFunc()
+        this.props.showEditForm()
+    }
+
     render() {
         return (
             <tr>
@@ -19,7 +30,7 @@ class DataTableRow extends Component {
                 <td>{this.showRole(this.props.role)}</td>
                 <td>
                     <div className="btn btn-group">
-                        <div className="btn btn-warning">Edit</div>
+                        <div className="btn btn-warning" onClick={() => this.editUser()} >Edit</div>
                         <div className="btn btn-danger">Delete</div>
                     </div>
                 </td>
