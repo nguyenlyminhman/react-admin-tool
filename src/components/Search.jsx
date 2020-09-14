@@ -40,7 +40,6 @@ class Search extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="col-12">
                 <div className="form-group">

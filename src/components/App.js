@@ -42,6 +42,19 @@ class App extends Component {
     })
   }
 
+  getUserInfor = (user) => {
+    this.state.data.forEach((item, key) => {
+      if (item.id === user.id) {
+        if (user.name !== undefined)
+          item.name = user.name;
+        if (user.tel !== undefined)
+          item.tel = user.tel;
+        if (user.role !== undefined)
+          item.role = user.role;
+      }
+    })
+  }
+
   toggleEditForm = () => {
     this.setState({ isShowEditUserForm: true })
   }
@@ -57,6 +70,7 @@ class App extends Component {
         resultSearch.push(item)
       }
     })
+
     return <div>
       <Header />
       <div className="searchForm">
@@ -73,6 +87,7 @@ class App extends Component {
               getUserData={(value) => { this.getUserData(value) }}
             />
             <EditUser
+              getUserInfor={(user) => this.getUserInfor(user)}
               cancelEditForm={() => this.cancelEditForm()}
               userInfo={this.state.userInfo}
               isShowEditUserForm={this.state.isShowEditUserForm}

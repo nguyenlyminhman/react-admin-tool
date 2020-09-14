@@ -7,25 +7,28 @@ class EditUser extends Component {
             id: this.props.userInfo.id,
             name: this.props.userInfo.name,
             tel: this.props.userInfo.tel,
-            role: this.props.userInfo.phone,
+            role: this.props.userInfo.role,
         }
+        console.log();
     }
 
     isChange = (event) => {
         let name = event.target.name
         let value = event.target.value
         this.setState({
-            [name]: value
+            [name]: value,
+            id: this.props.userInfo.id
         })
     }
 
-    sendUserData = () => {
-        let item = { id: '', name: '', tel: '', role: '' }
-        item.id = this.state.id;
-        item.name = this.state.name;
-        item.tel = this.state.tel;
-        item.role = this.state.role;
-        this.props.getUserEdit(item)
+    sendUserInfo = () => {
+        let info = {}
+        info.id = this.state.id;
+        info.name = this.state.name;
+        info.tel = this.state.tel;
+        info.role = this.state.role;
+        this.props.getUserInfor(info);
+        this.props.cancelEditForm();
     }
 
     cancel = () => {
@@ -70,7 +73,7 @@ class EditUser extends Component {
                                     </select>
                                 </div>
                                 <div className="form-group text-right">
-                                    <input type='reset' className="btn btn-block btn-warning" onClick={() => this.sendUserData()} value='Edited' />
+                                    <input type='reset' className="btn btn-block btn-warning" onClick={() => this.sendUserInfo()} value='Edited' />
                                     <input type='reset' className="btn btn-block btn-warning" onClick={() => this.cancel()} value='Cancel' />
                                 </div>
                             </div>

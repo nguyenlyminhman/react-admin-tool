@@ -4,21 +4,27 @@ class DataTableRow extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            id: this.props.editUserFunc.id,
+            name: '',
+            tel: '',
+            role: '',
+        }
     }
 
     showRole = (val) => {
         if (val === "2") {
             return "Admin"
         }
-        else if (val == "3") {
+        else if (val === "3") {
             return "End User"
         }
         return "Default"
     }
 
     editUser = () => {
-        this.props.editUserFunc()
         this.props.showEditForm()
+        this.props.editUserFunc()
     }
 
     render() {
