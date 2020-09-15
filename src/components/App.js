@@ -53,6 +53,7 @@ class App extends Component {
           item.role = user.role;
       }
     })
+    localStorage.setItem('userData', JSON.stringify(this.state.data)); 
   }
 
   toggleEditForm = () => {
@@ -61,6 +62,16 @@ class App extends Component {
 
   cancelEditForm = () => {
     this.setState({ isShowEditUserForm: false })
+  }
+  componentWillMount(){
+    if(localStorage.getItem('userData') === null){
+        localStorage.setItem('userData', JSON.stringify(DataUser)); 
+    } else {
+      let items = JSON.parse(localStorage.getItem('userData'))
+      this.setState({
+        data: items
+      })
+    }
   }
 
   render() {
