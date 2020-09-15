@@ -27,6 +27,10 @@ class DataTableRow extends Component {
         this.props.editUserFunc()
     }
 
+    deleteUser = () => {
+        this.props.deleteUserFunc()
+    }
+
     render() {
         return (
             <tr>
@@ -37,7 +41,7 @@ class DataTableRow extends Component {
                 <td>
                     <div className="btn btn-group">
                         <div className="btn btn-warning" onClick={() => this.editUser()} >Edit</div>
-                        <div className="btn btn-danger">Delete</div>
+                        <div className="btn btn-danger" onClick={() => this.deleteUser()} >Delete</div>
                     </div>
                 </td>
             </tr>

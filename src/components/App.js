@@ -53,7 +53,15 @@ class App extends Component {
           item.role = user.role;
       }
     })
-    localStorage.setItem('userData', JSON.stringify(this.state.data)); 
+    localStorage.setItem('userData', JSON.stringify(this.state.data));
+  }
+
+  deleteUserInfo = (user) => {
+    let tempData = this.state.data.filter(item => item.id != user.id)
+    this.setState({
+      data: tempData
+    })
+    localStorage.setItem('userData', JSON.stringify(this.state.data));
   }
 
   toggleEditForm = () => {
@@ -63,9 +71,10 @@ class App extends Component {
   cancelEditForm = () => {
     this.setState({ isShowEditUserForm: false })
   }
-  componentWillMount(){
-    if(localStorage.getItem('userData') === null){
-        localStorage.setItem('userData', JSON.stringify(DataUser)); 
+
+  componentWillMount() {
+    if (localStorage.getItem('userData') === null) {
+      localStorage.setItem('userData', JSON.stringify(DataUser));
     } else {
       let items = JSON.parse(localStorage.getItem('userData'))
       this.setState({
@@ -92,10 +101,15 @@ class App extends Component {
               toggleUserForm={() => this.toggleUserForm()}
               getSearchValue={(value) => this.getSearchValue(value)}
             />
-            <DataTable showEditForm={() => this.toggleEditForm()} getUserEdit={(user) => this.getUserEdit(user)} userData={resultSearch} />
+            <DataTable
+              showEditForm={() => this.toggleEditForm()}
+              getUserEdit={(user) => this.getUserEdit(user)}
+              deleteUserInfo={(user) => this.deleteUserInfo(user)}
+              userData={resultSearch} />
             <NewUserForm
               isShowNewUserForm={this.state.isShowNewUserForm}
               getUserData={(value) => { this.getUserData(value) }}
+
             />
             <EditUser
               getUserInfor={(user) => this.getUserInfor(user)}

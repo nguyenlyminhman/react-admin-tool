@@ -8,11 +8,15 @@ class DataTable extends Component {
         this.props.getUserEdit(user)
     }
 
+    deleteUserFunc = (user) => {
+        this.props.deleteUserInfo(user)
+    }
 
     mappingDataUser = () => this.props.userData.map((value, key) => (
         <DataTableRow
             showEditForm={() => this.props.showEditForm()}
             editUserFunc={(user) => this.editUserFunc(value)}
+            deleteUserFunc={(user) => this.deleteUserFunc(value)}
             key={value.id}
             index={key + 1}
             name={value.name}
